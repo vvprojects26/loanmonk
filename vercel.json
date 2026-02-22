@@ -7,16 +7,9 @@
       "maxDuration": 30
     }
   },
-  "routes": [
-    { "src": "/api/game/start", "dest": "/api/game/start.ts" },
-    { "src": "/api/game/next", "dest": "/api/game/next.ts" },
-    { "src": "/api/game/complete", "dest": "/api/game/complete.ts" },
-    { "src": "/api/game/behavioral-config", "dest": "/api/game/behavioral-config.ts" },
-    { "src": "/api/game/behavioral-signals", "dest": "/api/game/behavioral-signals.ts" },
-    { "src": "/api/game/behavioral-score", "dest": "/api/game/behavioral-score.ts" },
-    { "src": "/api/admin/sessions", "dest": "/api/admin/sessions.ts" },
-    { "src": "/api/admin/detail/(?<id>[^/]+)", "dest": "/api/admin/detail.ts?id=$id" },
-    { "src": "/api/admin/override", "dest": "/api/admin/override.ts" }
+  "rewrites": [
+    { "source": "/api/admin/detail/:id", "destination": "/api/admin/detail.ts?id=:id" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ],
   "headers": [
     {
