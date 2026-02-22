@@ -98,7 +98,7 @@ export function SessionDetailPage({ token }: { token: string }) {
         </div>
         <div className="stat-card">
           <div className="stat-value" style={{ color: 'var(--accent-light)' }}>
-            {assessment.money_profile as string || 'N/A'}
+            {String(assessment.money_profile || 'N/A')}
           </div>
           <div className="stat-label">Money Profile</div>
         </div>
@@ -142,18 +142,18 @@ export function SessionDetailPage({ token }: { token: string }) {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
                 <div>
                   <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>Duration</div>
-                  <div style={{ fontSize: 18, fontWeight: 600 }}>{loanRec.duration_months as number} months</div>
+                  <div style={{ fontSize: 18, fontWeight: 600 }}>{Number(loanRec.duration_months)} months</div>
                 </div>
                 <div>
                   <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>APR</div>
-                  <div style={{ fontSize: 18, fontWeight: 600 }}>{loanRec.apr_percent as number}%</div>
+                  <div style={{ fontSize: 18, fontWeight: 600 }}>{Number(loanRec.apr_percent)}%</div>
                 </div>
               </div>
-              {loanRec.admin_override && (
+              {!!loanRec.admin_override && (
                 <div style={{ marginTop: 12, padding: 8, background: 'rgba(245,158,11,0.1)', borderRadius: 6, fontSize: 12 }}>
                   <strong style={{ color: 'var(--warning)' }}>Admin Override</strong>
-                  <div style={{ color: 'var(--text-secondary)', marginTop: 4 }}>{loanRec.override_justification as string}</div>
-                  <div style={{ color: 'var(--text-muted)', marginTop: 4 }}>By: {loanRec.reviewed_by as string}</div>
+                  <div style={{ color: 'var(--text-secondary)', marginTop: 4 }}>{String(loanRec.override_justification)}</div>
+                  <div style={{ color: 'var(--text-muted)', marginTop: 4 }}>By: {String(loanRec.reviewed_by)}</div>
                 </div>
               )}
             </div>
@@ -170,15 +170,15 @@ export function SessionDetailPage({ token }: { token: string }) {
         </div>
         <div className="stats-grid" style={{ marginBottom: 0 }}>
           <div className="stat-card">
-            <div className="stat-value">{behavioralSignals?.avg_response_time_ms as number || '-'}ms</div>
+            <div className="stat-value">{Number(behavioralSignals?.avg_response_time_ms) || '-'}ms</div>
             <div className="stat-label">Avg Response Time</div>
           </div>
           <div className="stat-card">
-            <div className="stat-value">{behavioralSignals?.changed_answer_count as number ?? '-'}</div>
+            <div className="stat-value">{Number(behavioralSignals?.changed_answer_count) ?? '-'}</div>
             <div className="stat-label">Changed Answers</div>
           </div>
           <div className="stat-card">
-            <div className="stat-value">{behavioralSignals?.total_hesitations as number ?? '-'}</div>
+            <div className="stat-value">{Number(behavioralSignals?.total_hesitations) ?? '-'}</div>
             <div className="stat-label">Hesitations</div>
           </div>
           <div className="stat-card">
@@ -212,12 +212,12 @@ export function SessionDetailPage({ token }: { token: string }) {
       )}
 
       {/* Section E: Admin Comments / Override */}
-      {loanRec?.admin_comment && (
+      {!!loanRec?.admin_comment && (
         <div className="card" style={{ marginTop: 16 }}>
           <div className="card-header">
             <span className="card-title">Admin Comments</span>
           </div>
-          <div style={{ fontSize: 13, color: 'var(--text-secondary)' }}>{loanRec.admin_comment as string}</div>
+          <div style={{ fontSize: 13, color: 'var(--text-secondary)' }}>{String(loanRec.admin_comment)}</div>
         </div>
       )}
 

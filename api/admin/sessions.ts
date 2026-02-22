@@ -93,7 +93,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Apply risk filter on joined data (post-query)
     const filtered = riskFilter
-      ? items.filter((item: { risk_rating: string | null }) => item.risk_rating === riskFilter)
+      ? items.filter((item) => item.risk_rating === riskFilter)
       : items;
 
     return res.status(200).json({

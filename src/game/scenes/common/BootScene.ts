@@ -146,7 +146,7 @@ export class BootScene extends Phaser.Scene {
     ];
 
     for (const { key, color } of colors) {
-      const gfx = this.make.graphics({ add: false });
+      const gfx = this.make.graphics({ add: false } as Phaser.Types.GameObjects.Graphics.Options);
       gfx.fillStyle(color, 1);
       gfx.fillRect(0, 0, 64, 64);
       gfx.generateTexture(key, 64, 64);
@@ -154,7 +154,7 @@ export class BootScene extends Phaser.Scene {
     }
 
     // Create particle texture
-    const particleGfx = this.make.graphics({ add: false });
+    const particleGfx = this.make.graphics({ add: false } as Phaser.Types.GameObjects.Graphics.Options);
     particleGfx.fillStyle(0xffffff, 1);
     particleGfx.fillCircle(4, 4, 4);
     particleGfx.generateTexture('particle', 8, 8);
